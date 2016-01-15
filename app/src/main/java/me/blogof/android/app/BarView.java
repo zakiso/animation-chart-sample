@@ -49,9 +49,9 @@ public class BarView extends View {
         //柱与柱之间的间隔
         float space;
         if (orientation == 1){
-            space = getWidth()/pillars.size();
+            space = (getWidth() - (pillars.size() * pillarWidth))/pillars.size();
         }else {
-            space = getHeight()/pillars.size();
+            space = (getHeight() - (pillars.size() * pillarWidth))/pillars.size();
         }
         mPaint.setStrokeWidth(1);
         mPaint.setStyle(Paint.Style.FILL);
@@ -65,7 +65,7 @@ public class BarView extends View {
             float titleHeight = bounds.height();
             float titleWidth = bounds.width();
 
-            float left = i*space + space/2;
+            float left = i*pillarWidth + (i+0.5f)*space;
             float top = padding;
             float right = left + pillarWidth;
             float bottom = getHeight() - 2*padding - titleHeight;
