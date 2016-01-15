@@ -1,17 +1,36 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 tools:context=".MainActivity"
                  >
 
-    <TextView
-            android:id="@+id/tvinfo"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Hello world" />
 
-</RelativeLayout>
+    <me.blogof.android.app.LineView
+            android:id="@+id/line_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
+
+    <me.blogof.android.app.BarView
+            android:id="@+id/bar_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+    />
+
+
+    <me.blogof.android.app.PieView
+            android:id="@+id/pie_view"
+            android:layout_width="200dp"
+            android:layout_height="100dp"/>
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/add_value"
+            android:onClick="addValue"
+            android:text="add"/>
+
+
+</LinearLayout>
