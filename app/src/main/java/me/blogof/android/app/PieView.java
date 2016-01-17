@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class PieView extends View {
 
-
+    private String TAG = "PieView";
     private List<Pie> pies;
     private String title;
     private String circleColor;
@@ -93,13 +94,15 @@ public class PieView extends View {
         RectF rectF = new RectF(leftX,leftY,rightX,rightY);
         for (int i=0;i<pies.size();i++){
             Pie p = pies.get(i);
-            maxValue += p.getValue();
+            float value = p.getValue()>0?p.getValue():1;
+            maxValue += value;
         }
         for (int i=0;i<pies.size();i++){
             Pie p = pies.get(i);
-            double percent = (p.getValue()/maxValue)*(360 - pies.size()*pieSpace);
+            double percent = ((p.getValue()>=0?p.getValue():1)/maxValue)*(360 - pies.size()*pieSpace);
             mPaint.setColor(Color.parseColor(p.color));
             canvas.drawArc(rectF,lastAngle + i*pieSpace, (float)(phase * percent),false,mPaint);
+            Log.d(TAG, "drawPie phase:+" +phase + ",lastAngle:" + lastAngle + ",percent:"+percent);
             lastAngle += (float) percent;
         }
     }
@@ -111,6 +114,7 @@ public class PieView extends View {
     }
 
     private void startDrawView() {
+        clearAnimation();
         ObjectAnimator animator = ObjectAnimator.ofFloat(this, "phase", 0.0f, 1.0f);
         AccelerateDecelerateInterpolator a = new AccelerateDecelerateInterpolator();
         animator.setInterpolator(a);
@@ -120,7 +124,7 @@ public class PieView extends View {
 
     private void setPhase(float phase){
         this.phase = phase;
-        postInvalidate();
+        invalidate();
     }
 
     public void  reloadData(){

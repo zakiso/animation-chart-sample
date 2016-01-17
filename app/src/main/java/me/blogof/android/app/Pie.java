@@ -6,7 +6,6 @@ package me.blogof.android.app;
 public class Pie {
 
     private float value;
-    private float currentValue;
     public String color;
 
     public Pie(float value, String color) {
@@ -31,11 +30,4 @@ public class Pie {
         this.color = color;
     }
 
-    public float getCurrentValue() {
-        return currentValue;
-    }
-
-    public void setCurrentValue(float currentValue) {
-        this.currentValue = currentValue;
-    }
 }
