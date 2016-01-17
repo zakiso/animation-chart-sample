@@ -1,16 +1,12 @@
 package me.blogof.android.app;
 
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.*;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.*;
-import android.widget.LinearLayout;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,16 +33,15 @@ public class LineView extends View{
     private float pathLength;
     private Paint mPaint;
 
+    /**
+     *  用于设置动画类型,如果是第一次设置数据源 则为false
+     *  false的时候动画为线条逐渐增加的动画
+     *  true为直接更新某个点的动画
+     **/
+    private boolean isDelta = false;
+
     //当前曲线的动画的偏移量
     private float currentOffset;
-    /**
-     * 动画播放的时间
-     */
-    private int time = 4000;
-    /**
-     * 动画间隔
-     */
-    private int delay = 500;
 
     public LineView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -163,4 +158,15 @@ public class LineView extends View{
             points.get(i).setXY(x,y);
         }
     }
+
+    public void reloadData(){
+
+    }
+
+    //下面是get set方法
+    public LinePoint getPoint(int index){
+        return points.get(index);
+    }
+
+
 }

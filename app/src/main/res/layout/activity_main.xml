@@ -12,6 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"/>
 
+
+
     <me.blogof.android.app.BarView
             android:id="@+id/bar_view"
             android:layout_width="match_parent"
@@ -21,16 +23,37 @@
 
     <me.blogof.android.app.PieView
             android:id="@+id/pie_view"
-            android:layout_width="200dp"
-            android:layout_height="100dp"/>
-
-    <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:id="@+id/add_value"
-            android:onClick="addValue"
-            android:text="add"/>
+            android:layout_height="150dp"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+        <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="addLineValue"
+                android:layout_weight="1"
+                android:text="addLineValue"/>
+
+        <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="addBarValue"
+                android:layout_weight="1"
+                android:text="addBarValue"/>
+
+        <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:onClick="addPieValue"
+                android:text="addPieValue"/>
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>
