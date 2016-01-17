@@ -33,6 +33,7 @@ public class PieView extends View {
     private float maxValue;
     private float lastAngle = 0;
     private float phase = 0f;
+    private RectF rectF;
 
     public PieView(Context context) {
         super(context);
@@ -66,19 +67,12 @@ public class PieView extends View {
         if (null == pies || pies.size() == 0){
             return;
         }
-        lastAngle = 0;
-        maxValue = 0;
         float radius;
         if (getHeight() < getWidth()){
             radius = (getHeight() - 2*padding)/2;
         }else {
             radius = (getWidth() -2*padding)/2;
         }
-        mPaint.setStrokeWidth(radius/4);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.LTGRAY);
-
-
         float leftX,leftY,rightX,rightY;
         if (getWidth()>getHeight()){
             leftX = (getWidth() - getHeight() + 2*padding)/2 + radius/8;
@@ -91,30 +85,25 @@ public class PieView extends View {
             rightX = getWidth() - leftX;
             rightY = getHeight() - leftY;
         }
-        RectF rectF = new RectF(leftX,leftY,rightX,rightY);
-        for (int i=0;i<pies.size();i++){
-            Pie p = pies.get(i);
-            float value = p.getValue()>0?p.getValue():1;
-            maxValue += value;
-        }
+        rectF = new RectF(leftX,leftY,rightX,rightY);
+        lastAngle = 0;
         for (int i=0;i<pies.size();i++){
             Pie p = pies.get(i);
             double percent = ((p.getValue()>=0?p.getValue():1)/maxValue)*(360 - pies.size()*pieSpace);
             mPaint.setColor(Color.parseColor(p.color));
             canvas.drawArc(rectF,lastAngle + i*pieSpace, (float)(phase * percent),false,mPaint);
-            Log.d(TAG, "drawPie phase:+" +phase + ",lastAngle:" + lastAngle + ",percent:"+percent);
             lastAngle += (float) percent;
         }
     }
 
     public void setPies(List<Pie> pies) {
         this.pies = pies;
-        startDrawView();
+        reloadData();
 
     }
 
     private void startDrawView() {
-        clearAnimation();
+        calculateData();
         ObjectAnimator animator = ObjectAnimator.ofFloat(this, "phase", 0.0f, 1.0f);
         AccelerateDecelerateInterpolator a = new AccelerateDecelerateInterpolator();
         animator.setInterpolator(a);
@@ -129,6 +118,15 @@ public class PieView extends View {
 
     public void  reloadData(){
         startDrawView();
+    }
+
+    private void calculateData(){
+        maxValue = 0;
+        for (int i=0;i<pies.size();i++){
+            Pie p = pies.get(i);
+            float value = p.getValue()>0?p.getValue():1;
+            maxValue += value;
+        }
     }
 
     //下面全是get set方法

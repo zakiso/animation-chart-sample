@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void addPieValue(View v){
         Pie p = pieView.getPie(1);
-        p.setValue(p.getValue() - 50);
+        p.setValue(p.getValue() + 50);
         pieView.reloadData();
     }
 }
