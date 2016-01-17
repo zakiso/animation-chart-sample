@@ -41,6 +41,14 @@ public class LinePoint {
         this.y = y;
     }
 
+    public float getValue() {
+        return value;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
+    }
+
     public float getX() {
         return x;
     }

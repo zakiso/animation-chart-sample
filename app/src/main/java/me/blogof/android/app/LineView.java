@@ -118,7 +118,7 @@ public class LineView extends View{
 
     public void setPoints(List<LinePoint> points) {
         this.points = points;
-        requestLayout();
+        reloadData();
     }
 
     @Override
@@ -160,7 +160,7 @@ public class LineView extends View{
     }
 
     public void reloadData(){
-
+        requestLayout();
     }
 
     //下面是get set方法

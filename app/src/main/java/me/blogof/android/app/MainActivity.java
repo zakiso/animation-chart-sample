@@ -75,8 +75,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addLineValue(View v){
-
-
+        LinePoint p = lineView.getPoint(7);
+        p.setValue(p.getValue()+10);
+        lineView.reloadData();
     }
 
     public void addPieValue(View v){
