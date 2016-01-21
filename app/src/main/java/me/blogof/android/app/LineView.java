@@ -98,8 +98,6 @@ public class LineView extends View{
         animator.setInterpolator(a);
         animator.setDuration(1300);
         animator.start();
-
-
     }
 
     /** 该方法由动画的回调来调用会传入动画的偏移增量 从0-1 **/

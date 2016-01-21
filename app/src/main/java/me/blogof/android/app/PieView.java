@@ -91,6 +91,7 @@ public class PieView extends View {
             Pie p = pies.get(i);
             double percent = ((p.getValue()>=0?p.getValue():1)/maxValue)*(360 - pies.size()*pieSpace);
             mPaint.setColor(Color.parseColor(p.color));
+//            mPaint.setStrokeCap(Paint.Cap.ROUND);
             canvas.drawArc(rectF,lastAngle + i*pieSpace, (float)(phase * percent),false,mPaint);
             lastAngle += (float) percent;
         }

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CuteZqChart.iml" filepath="$PROJECT_DIR$/CuteZqChart.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shakeshakeprogress/shakeshakeprogress.iml" filepath="$PROJECT_DIR$/shakeshakeprogress/shakeshakeprogress.iml" />
     </modules>
   </component>
 </project>

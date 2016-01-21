@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         barView.getPillars().get(0).value -= 10;
         barView.getPillars().get(1).value += 10;
         barView.getPillars().get(2).value += 1;
-
+        barView.setLongClickable(true);
         barView.reloadData();
     }
 
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         Pie p = pieView.getPie(1);
         p.setValue(p.getValue() + 50);
         pieView.reloadData();
+        ArrayList s = new ArrayList();
     }
 }
 
